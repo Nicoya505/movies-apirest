@@ -28,7 +28,7 @@ class MovieService:
         return new_movies
     
 
-    def put_movie(self, id: int, movie: MovieShema ):
+    def update_movie(self, id: int, movie: MovieShema ):
         data = self.session.query(MovieModel).filter(MovieModel.id == id).first()
         data.title = movie.title
         data.category = movie.category
