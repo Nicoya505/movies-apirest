@@ -15,7 +15,7 @@ Here is a basic but practical REST API. It helps us practice consuming an API. T
 * PyJWT
 * SQLite
 * Git
-* Patron N capas
+* Layered architecture pattern
 
 ## Development environment
 
