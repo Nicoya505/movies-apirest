@@ -1,13 +1,14 @@
 from shemas import MovieShema
 from services import MovieService
 from config import Session
+from middlewares import JwtBearer
 
 from typing import List
 
 from fastapi import APIRouter
 from fastapi.responses import JSONResponse
 from fastapi.encoders import jsonable_encoder
-from fastapi import Path, Query, Body, status
+from fastapi import Path, Query, Body, status, Depends
 
 movie_router = APIRouter()
 
@@ -15,6 +16,7 @@ movie_router = APIRouter()
     "/movie",
     status_code=status.HTTP_201_CREATED,
     tags=["Movies"],
+    dependencies=[Depends(JwtBearer())],
     response_model=dict
 )
 def create_movie(movie: MovieShema = Body(...)):
@@ -70,6 +72,7 @@ def get_movie_by_category(category: str = Query(..., min_length=5, max_length=50
     "/movie/{id}",
     status_code=status.HTTP_200_OK,
     tags=["Movies"],
+    dependencies=[Depends(JwtBearer())],
     response_model=dict
 )
 def update_movie(id: int = Path(..., ge=1), movie: MovieShema = Body(...)):
@@ -89,6 +92,7 @@ def update_movie(id: int = Path(..., ge=1), movie: MovieShema = Body(...)):
     "/movie/{id}",
     status_code=status.HTTP_200_OK,
     tags=["Movies"],
+    dependencies=[Depends(JwtBearer())],
     response_model=dict
 )
 def delete_movie(id: int = Path(..., ge=1)):

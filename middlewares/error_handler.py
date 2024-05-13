@@ -11,9 +11,9 @@ class ErrorHandler(BaseHTTPMiddleware):
         super().__init__(app)
 
     
-    def dispatch(self, request: Request, call_next) -> Response | JSONResponse:
+    async def dispatch(self, request: Request, call_next) -> Response | JSONResponse:
         try:
-            return call_next(request)
+            return await call_next(request)
         except Exception as ex:
             return JSONResponse(
                 status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
