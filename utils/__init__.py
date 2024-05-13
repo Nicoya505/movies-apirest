@@ -1,1 +1,1 @@
-from .database import Base, session, engine
+from .jwt_manager import JwtManager

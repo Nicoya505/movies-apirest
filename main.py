@@ -1,4 +1,4 @@
-from utils import Base, engine
+from config import Base, engine
 
 from fastapi import FastAPI
 
